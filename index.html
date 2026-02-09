@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kertases Pro V11.3 - Batch Edition</title>
+    <title>Kertases Pro V11.4 - Smart Flow</title>
     
     <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -27,8 +27,8 @@
         }
 
         .cyber-input { background: #000; border: 1px solid var(--border); color: var(--accent); padding: 8px; width: 100%; font-family: 'Roboto Mono', monospace; font-size: 0.8rem; }
-        textarea.cyber-input { height: 60px; resize: none; }
-        .cyber-btn { background: linear-gradient(45deg, var(--bg-panel), #222); border: 1px solid var(--accent); color: var(--accent); padding: 10px 15px; cursor: pointer; font-weight: 700; text-transform: uppercase; transition: 0.3s; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+        textarea.cyber-input { height: 50px; resize: none; }
+        .cyber-btn { background: linear-gradient(45deg, var(--bg-panel), #222); border: 1px solid var(--accent); color: var(--accent); padding: 10px 15px; cursor: pointer; font-weight: 700; text-transform: uppercase; transition: 0.3s; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 8px; justify-content: center; border-radius: 2px; }
         .cyber-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
         .cyber-btn.danger { border-color: var(--danger); color: var(--danger); }
         .cyber-btn.success { border-color: var(--success); color: var(--success); }
@@ -46,47 +46,49 @@
         .status-widget { border: 1px solid var(--border); padding: 12px; margin-bottom: 15px; border-left: 4px solid var(--danger); }
         .status-widget.online { border-left-color: var(--success); }
 
-        .main-view { flex: 1; display: grid; grid-template-columns: 1fr 360px; overflow: hidden; height: 100%; }
+        .main-view { flex: 1; display: grid; grid-template-columns: 1fr 380px; overflow: hidden; height: 100%; }
         .timeline { display: flex; flex-direction: column; background: rgba(0,0,0,0.4); border-right: 1px solid var(--border); overflow: hidden; }
-        .stream-area { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; scroll-behavior: smooth; }
+        .stream-area { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
         
-        /* Message Card Updated for Selection */
         .msg-card { width: 100%; max-width: 420px; background: #111; border: 1px solid var(--border); position: relative; }
         .msg-card.out { align-self: flex-end; border-color: var(--secondary); }
         .msg-card.in { align-self: flex-start; border-color: var(--accent); }
-        .msg-card.selected { border-width: 2px; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--success); }
+        .msg-card.selected { border: 2px solid var(--success); box-shadow: 0 0 15px rgba(0,255,157,0.2); }
         
         .msg-header { padding: 6px 10px; background: rgba(255,255,255,0.05); font-size: 0.65rem; display: flex; justify-content: space-between; align-items: center; }
         .msg-body { padding: 10px; }
-        .msg-img-container { position: relative; margin-bottom: 10px; border: 1px solid #222; }
-        .msg-img { width: 100%; height: 160px; object-fit: contain; background: #000; }
+        .msg-img-container { position: relative; margin-bottom: 8px; border: 1px solid #222; background: #000; }
+        .msg-img { width: 100%; height: 160px; object-fit: contain; }
         .pdf-tag { position: absolute; top: 5px; right: 5px; background: var(--danger); color: white; padding: 2px 6px; font-size: 0.6rem; font-weight: bold; z-index: 5; }
         
         .msg-inv { color: var(--accent); font-weight: bold; font-size: 1rem; margin-bottom: 3px; }
-        .msg-cap { font-size: 0.8rem; color: #aaa; background: #000; padding: 8px; border: 1px solid #222; white-space: pre-wrap; margin-bottom: 5px; }
+        .msg-cap { font-size: 0.8rem; color: #aaa; background: #000; padding: 8px; border: 1px solid #222; white-space: pre-wrap; margin-bottom: 8px; }
 
-        /* Multi Item Inside Card */
         .sub-item { border-top: 1px dashed #333; padding-top: 10px; margin-top: 10px; }
 
         .control-panel { padding: 15px; overflow-y: auto; background: #0c0c0c; border-left: 1px solid var(--border); }
-        .upload-zone { border: 2px dashed #444; padding: 20px; text-align: center; color: #666; cursor: pointer; margin-bottom: 15px; font-weight: bold; }
-
-        /* Preview Area Updated */
-        .preview-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
-        .preview-card { background: #111; border: 1px solid #333; padding: 10px; display: flex; gap: 10px; }
-        .preview-thumb { width: 80px; height: 80px; flex-shrink: 0; background: #000; border: 1px solid #222; position: relative; }
+        
+        /* New Input List UI */
+        .preview-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; }
+        .preview-card { background: #111; border: 1px solid #333; padding: 10px; }
+        .preview-top { display: flex; gap: 10px; margin-bottom: 10px; }
+        .preview-thumb { width: 90px; height: 90px; flex-shrink: 0; background: #000; border: 1px solid #222; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .preview-thumb img { width: 100%; height: 100%; object-fit: contain; }
-        .preview-info { flex: 1; }
+        .preview-thumb:hover::after { content: "REPLACE"; position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--accent); }
+        .preview-inputs { flex: 1; display: flex; flex-direction: column; gap: 5px; }
 
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-box { width: 600px; background: #111; border: 1px solid var(--accent); padding: 20px; max-height: 90vh; overflow-y: auto; }
+        .modal-box { width: 700px; background: #111; border: 1px solid var(--accent); padding: 20px; max-height: 90vh; overflow-y: auto; }
 
         table { width: 100%; border-collapse: collapse; font-size: 0.7rem; color: var(--text-dim); }
         th { border-bottom: 1px solid var(--accent); color: var(--accent); padding: 8px; text-align: left; }
         td { padding: 8px; border-bottom: 1px solid #222; }
 
+        .hist-tabs { display: flex; gap: 5px; margin-bottom: 15px; }
+        .hist-tab-btn { flex: 1; padding: 10px; background: #222; color: #666; cursor: pointer; border: none; font-weight: bold; font-family: inherit; font-size: 0.7rem; }
+        .hist-tab-btn.active { background: var(--accent); color: #000; }
+
         .batch-bar { padding: 10px 20px; background: #001a1a; border-bottom: 1px solid var(--accent); display: none; justify-content: space-between; align-items: center; }
-        
         .back-nav-btn { font-size: 1.5rem; cursor: pointer; color: var(--accent); position: absolute; top: 15px; left: 15px; z-index: 10; background: none; border: none; }
     </style>
 </head>
@@ -97,7 +99,7 @@
 
     <div id="login-screen">
         <h1 style="font-size:3rem; color:var(--accent); text-shadow:0 0 20px var(--accent-glow); margin:0;">KERTASES <span style="color:#fff">PRO</span></h1>
-        <div style="color:var(--text-dim); letter-spacing:5px; margin-bottom:40px;">V11.3 BATCH PRODUCTION</div>
+        <div style="color:var(--text-dim); letter-spacing:5px; margin-bottom:40px;">V11.4 SMART PRODUCTION</div>
         <div class="role-grid">
             <div class="role-card" onclick="enterRole('admin')">🕶️<br>ADMIN</div>
             <div class="role-card" onclick="enterRole('designer')">🎨<br>DESIGNER</div>
@@ -118,97 +120,85 @@
                 <div id="status-text" style="font-weight:bold;">OFFLINE</div>
                 <div style="font-size:0.6rem; color:var(--text-dim); margin-top:5px; cursor:pointer;" onclick="changeId()">MY ID (EDIT): <span id="my-id-display" style="color:var(--accent);">...</span></div>
             </div>
-            <input type="text" id="target-id" class="cyber-input" placeholder="Target ID (Koma untuk Multi)">
+            <input type="text" id="target-id" class="cyber-input" placeholder="Target ID">
             <button class="cyber-btn" style="width:100%; margin-top:8px;" onclick="connectMulti()">LINK CONNECT</button>
             <div id="active-conns" style="font-size:0.6rem; color:var(--success); margin-top:10px; word-break:break-all;"></div>
             <div style="margin-top:auto;">
-                <button class="cyber-btn" style="width:100%; border-color:var(--secondary); color:var(--secondary);" onclick="toggleHistory()">LOG PRODUKSI</button>
+                <button class="cyber-btn" style="width:100%; border-color:var(--secondary); color:var(--secondary);" onclick="toggleHistory()">PRODUCTION LOG</button>
             </div>
         </div>
 
         <div class="main-view">
             <div class="timeline">
-                <!-- Batch Bar for Operator -->
                 <div id="batch-bar" class="batch-bar">
                     <span id="batch-count" style="color:var(--success); font-weight:bold;">0 ITEM DIPILIH</span>
                     <button class="cyber-btn success mini" onclick="openBatchPrint()">PROSES BATCH PDF</button>
                 </div>
                 <div style="padding:10px 15px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:#000;">
                     <span style="font-weight:bold; color:var(--accent); font-size:0.8rem;">TIMELINE FLOW</span>
-                    <span id="role-hint" style="font-size:0.65rem; color:var(--text-dim);">V11.3</span>
+                    <span id="role-hint" style="font-size:0.65rem; color:var(--text-dim);">V11.4</span>
                 </div>
                 <div id="stream-area" class="stream-area"></div>
             </div>
 
             <div class="control-panel">
-                <div style="color:var(--accent); font-weight:bold; margin-bottom:12px; font-size:0.8rem;">TRANSMIT ASSETS</div>
-                <div class="upload-zone" onclick="document.getElementById('file-in').click()">+ SELECT JPG / PDF</div>
+                <div style="color:var(--accent); font-weight:bold; margin-bottom:12px; font-size:0.8rem;">TRANSMIT ASSET</div>
                 
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                    <span style="font-size:0.7rem;">MODE INPUT:</span>
-                    <select id="input-mode" class="cyber-input" style="width:120px; padding:2px;" onchange="renderPreviews()">
-                        <option value="group">GROUP (1 INV)</option>
-                        <option value="individual">INDIVIDUAL</option>
+                <div style="background:#111; border:1px solid #333; padding:10px; margin-bottom:15px;">
+                    <div style="font-size:0.65rem; color:var(--text-dim); margin-bottom:5px;">MODE INPUT:</div>
+                    <select id="input-mode" class="cyber-input" onchange="switchInputMode()">
+                        <option value="individual">INDIVIDUAL (1 FILE 1 INV)</option>
+                        <option value="group">GROUP (MULTIPLE FILE 1 INV)</option>
                     </select>
                 </div>
 
-                <div id="group-fields" style="border:1px solid var(--secondary); padding:10px; margin-bottom:15px;">
-                    <input type="text" id="inv-group" class="cyber-input" placeholder="Invoice (Group)" style="margin-bottom:5px;">
-                    <textarea id="cap-group" class="cyber-input" placeholder="Catatan (Group)"></textarea>
+                <div id="group-data-box" style="display:none; border-left:3px solid var(--secondary); padding-left:10px; margin-bottom:15px;">
+                    <input type="text" id="group-inv" class="cyber-input" placeholder="Invoice Group" style="margin-bottom:5px;">
+                    <textarea id="group-cap" class="cyber-input" placeholder="Catatan Group"></textarea>
                 </div>
 
                 <div id="preview-list" class="preview-list"></div>
+
+                <button class="cyber-btn success" style="width:100%; margin-bottom:10px; border-style:dashed;" onclick="addNewRow()">[+] TAMBAH DATA / FILE</button>
+                <button id="btn-action-main" class="cyber-btn" style="width:100%;" onclick="mainAction()">SEND DATA TO TARGET</button>
                 
-                <input type="file" id="file-in" multiple style="display:none;" onchange="prepareFiles(this)">
-                <button id="btn-action-main" class="cyber-btn" style="width:100%;" onclick="mainAction()">SEND DATA</button>
+                <input type="file" id="global-file-in" style="display:none;" onchange="handleFileSelect(this)">
             </div>
         </div>
     </div>
 
-    <!-- MODAL PRINT (BATCH & SINGLE) -->
+    <!-- MODAL PRINT -->
     <div id="modal-print" class="modal">
         <div class="modal-box">
             <div style="color:var(--accent); font-weight:bold; margin-bottom:15px; border-bottom:1px solid var(--border); padding-bottom:10px;">PRODUCTION SETUP</div>
-            
-            <div id="single-print-preview" style="display:flex; gap:15px; margin-bottom:20px;">
+            <div id="batch-info" style="display:none; color:var(--success); background:rgba(0,255,157,0.1); padding:10px; border:1px solid var(--success); margin-bottom:15px;">
+                BATCH PDF: <span id="batch-count-val">0</span> Files.
+            </div>
+            <div id="single-preview" style="display:flex; gap:15px; margin-bottom:20px;">
                 <div style="width:120px; height:120px; background:#000; border:1px solid var(--border); position:relative;">
                     <img id="p-img" style="width:100%; height:100%; object-fit:contain;">
-                    <div id="p-pdf-badge" style="display:none;" class="pdf-tag">PDF</div>
                 </div>
                 <div style="flex:1;">
                     <label style="font-size:0.65rem;">INV (EDITABLE):</label>
                     <input type="text" id="p-inv" class="cyber-input" style="color:var(--success); margin-bottom:8px;">
-                    <label style="font-size:0.65rem;">JENIS BAHAN:</label>
+                    <label style="font-size:0.65rem;">BAHAN:</label>
                     <select id="p-mat" class="cyber-input">
-                        <option>Chromo</option><option>Vinyl Glossy</option><option>Vinyl Matte</option><option>Transparan</option><option>HVS</option><option>Art Carton</option>
+                        <option>Chromo</option><option>Vinyl Glossy</option><option>Vinyl Matte</option><option>Transparan</option><option>HVS</option>
                     </select>
                 </div>
             </div>
 
-            <div id="batch-print-info" style="display:none; color:var(--success); background:rgba(0,255,157,0.1); padding:10px; border:1px solid var(--success); margin-bottom:15px; font-size:0.8rem;">
-                BATCH MODE: <span id="batch-file-count">0</span> File PDF terpilih.
-            </div>
-
-            <div id="pdf-options" style="border:1px solid var(--danger); padding:15px; margin-bottom:20px; background: rgba(255,0,0,0.05);">
-                <div style="color:var(--danger); font-weight:bold; font-size:0.7rem; margin-bottom:10px;">PDF FULL PAGE OPTIONS</div>
-                <div style="display:flex; gap:10px; margin-bottom:10px;">
-                    <div style="flex:2;">
-                        <label style="font-size:0.65rem;">KERTAS:</label>
-                        <select id="p-pdf-paper" class="cyber-input" onchange="togglePdfPaperCustom()">
-                            <option value="32,48">A3+ (32x48 cm)</option><option value="29.7,42">A3</option><option value="21,29.7">A4</option><option value="custom">-- CUSTOM --</option>
-                        </select>
-                    </div>
-                    <div id="pdf-custom-paper-box" style="display:none; flex:2; gap:5px; align-items:flex-end;">
-                        <input type="number" id="p-pdf-pw" value="32" class="cyber-input" placeholder="W">
-                        <input type="number" id="p-pdf-ph" value="48" class="cyber-input" placeholder="H">
-                    </div>
-                </div>
-                <label style="font-size:0.65rem;">TARGET PER HALAMAN (LEMBAR):</label>
+            <div style="border:1px solid var(--danger); padding:15px; background: rgba(255,0,0,0.05);">
+                <div style="color:var(--danger); font-weight:bold; font-size:0.7rem; margin-bottom:10px;">PDF PRINT SETTING</div>
+                <label style="font-size:0.65rem;">UKURAN KERTAS:</label>
+                <select id="p-pdf-paper" class="cyber-input" style="margin-bottom:10px;">
+                    <option value="32,48">A3+ (32x48 cm)</option><option value="29.7,42">A3</option><option value="21,29.7">A4</option>
+                </select>
+                <label style="font-size:0.65rem;">JUMLAH CETAK (LEMBAR):</label>
                 <input type="number" id="p-pdf-target" value="1" class="cyber-input" style="font-size:1.5rem; text-align:center; color:var(--success); font-weight:bold; margin-bottom:15px;">
-                
                 <div style="display:flex; gap:10px;">
                     <button class="cyber-btn danger" style="flex:1;" onclick="closeModal()">BATAL</button>
-                    <button id="btn-do-print" class="cyber-btn success" style="flex:2;" onclick="executePrint()">MULAI CETAK</button>
+                    <button id="btn-do-print" class="cyber-btn success" style="flex:2;" onclick="executePrint()">CETAK SEKARANG</button>
                 </div>
             </div>
         </div>
@@ -216,17 +206,17 @@
 
     <!-- MODAL HISTORY -->
     <div id="modal-hist" class="modal">
-        <div class="modal-box" style="width:800px;">
+        <div class="modal-box" style="width:850px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <div style="color:var(--accent); font-weight:bold;">LOG - <span id="hist-role-title">...</span></div>
+                <div style="color:var(--accent); font-weight:bold;">LOG SYSTEM - <span id="hist-role-title">...</span></div>
                 <div style="display:flex; gap:10px;">
                     <button class="cyber-btn mini success" onclick="exportHistory()">CSV</button>
-                    <button class="cyber-btn mini danger" onclick="clearAllHistory()">CLEAR</button>
+                    <button class="cyber-btn mini danger" onclick="clearAllHistory()">CLEAR TAB</button>
                 </div>
             </div>
-            <div id="op-tabs" class="hist-tabs" style="display:none;">
-                <div class="hist-tab-btn active" id="tab-recv" onclick="switchHistTab('RECV')">INBOX</div>
-                <div class="hist-tab-btn" id="tab-prod" onclick="switchHistTab('PROD')">PRODUKSI</div>
+            <div id="hist-tabs-container" class="hist-tabs">
+                <div class="hist-tab-btn active" id="tab-1" onclick="switchHistTab(1)">TAB 1</div>
+                <div class="hist-tab-btn" id="tab-2" onclick="switchHistTab(2)">TAB 2</div>
             </div>
             <div style="max-height:400px; overflow-y:auto; background:#000; border:1px solid #222;">
                 <table><thead><tr><th>WAKTU</th><th>INV</th><th>KET</th><th>PARTNER</th><th>AKSI</th></tr></thead><tbody id="hist-body"></tbody></table>
@@ -241,12 +231,14 @@
         const ROLES_KEYS = { admin: "calik", designer: "melengkung", operator: "nangtung" };
         let cfg = { mode: 'cloud', host: 'localhost' };
         let myId = localStorage.getItem('kts_id') || 'CYBER-' + Math.floor(Math.random()*9999);
-        let role, peer, db, tempFiles = [], activeConns = [], currentTab = 'RECV', activeJob = null;
-        let selectedInboxes = []; // Untuk Batch Operator
+        let role, peer, db, activeConns = [], currentTab = 1, activeJob = null;
+        let tempFiles = []; // Array of objects: {data, thumb, isPdf, inv, cap}
+        let selectedInboxes = [];
+        let activeRowIdx = null;
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        let req = indexedDB.open("KertasesV113", 1);
+        let req = indexedDB.open("KertasesV114", 1);
         req.onupgradeneeded = e => {
             let d = e.target.result;
             d.createObjectStore("stream", { keyPath: "id" });
@@ -264,23 +256,18 @@
         function enterRole(r) {
             if(prompt(`KODE AKSES ${r.toUpperCase()}:`) === ROLES_KEYS[r]) {
                 role = r;
-                if(cfg.mode === 'local') cfg.host = document.getElementById('server-ip').value || 'localhost';
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('app-layout').style.display = 'flex';
                 document.getElementById('active-role-display').innerText = role.toUpperCase();
                 document.getElementById('my-id-display').innerText = myId;
-                
-                if(role === 'operator') {
-                    document.getElementById('btn-action-main').innerText = "PROSES LOKAL";
-                    document.getElementById('batch-bar').style.display = 'flex';
-                }
+                if(role === 'operator') document.getElementById('batch-bar').style.display = 'flex';
                 initPeer();
                 setTimeout(renderStream, 500);
             } else alert("DENIED");
         }
 
         function initPeer() {
-            peer = (cfg.mode === 'local') ? new Peer(myId, { host: cfg.host, port: 9000, path: '/kertases-app' }) : new Peer(myId);
+            peer = (cfg.mode === 'local') ? new Peer(myId, { host: document.getElementById('server-ip').value || 'localhost', port: 9000, path: '/kertases-app' }) : new Peer(myId);
             peer.on('open', () => updateStatus('ready'));
             peer.on('connection', c => setupConn(c));
         }
@@ -304,91 +291,92 @@
                     handleIncoming(d, c.peer);
                 }
             });
-            c.on('close', () => {
-                activeConns = activeConns.filter(x => x.peer !== c.peer);
-                updateConnUI();
-            });
+            c.on('close', () => { activeConns = activeConns.filter(x => x.peer !== c.peer); updateConnUI(); });
         }
 
         function updateConnUI() { document.getElementById('active-conns').innerText = "LINKED: " + activeConns.map(x => x.peer).join(', '); }
         function updateStatus(s) { document.getElementById('status-widget').className = 'status-widget ' + (activeConns.length > 0 ? 'online' : s); document.getElementById('status-text').innerText = activeConns.length > 0 ? 'CONNECTED' : s.toUpperCase(); }
 
-        async function getPdfPreview(base64, highRes = false) {
-            try {
-                const pdfData = atob(base64.split(',')[1]);
-                const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
-                const page = await pdf.getPage(1);
-                const viewport = page.getViewport({scale: highRes ? 3.0 : 0.5});
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height; canvas.width = viewport.width;
-                await page.render({canvasContext: context, viewport: viewport}).promise;
-                return canvas.toDataURL('image/jpeg', highRes ? 0.9 : 0.6);
-            } catch (e) { return null; }
+        // INPUT LOGIC
+        function switchInputMode() {
+            const mode = document.getElementById('input-mode').value;
+            document.getElementById('group-data-box').style.display = mode === 'group' ? 'block' : 'none';
+            renderPreviews();
         }
 
-        async function prepareFiles(input) {
-            tempFiles = [];
-            for(let f of input.files) {
-                let isPdf = f.type === 'application/pdf';
-                let data = await toBase64(f);
-                let thumb = isPdf ? await getPdfPreview(data) : data;
-                tempFiles.push({ data, isPdf, thumb, name: f.name, inv: '', cap: '' });
-            }
+        function addNewRow() {
+            tempFiles.push({ data: null, thumb: null, isPdf: false, inv: '', cap: '', name: '' });
             renderPreviews();
+        }
+
+        function triggerFileSelect(idx) {
+            activeRowIdx = idx;
+            document.getElementById('global-file-in').click();
+        }
+
+        async function handleFileSelect(input) {
+            if(!input.files[0] || activeRowIdx === null) return;
+            let f = input.files[0];
+            let isPdf = f.type === 'application/pdf';
+            let data = await toBase64(f);
+            let thumb = isPdf ? await getPdfPreview(data) : data;
+            
+            tempFiles[activeRowIdx].data = data;
+            tempFiles[activeRowIdx].thumb = thumb;
+            tempFiles[activeRowIdx].isPdf = isPdf;
+            tempFiles[activeRowIdx].name = f.name;
+            
+            renderPreviews();
+            activeRowIdx = null;
+            input.value = '';
         }
 
         function renderPreviews() {
             const list = document.getElementById('preview-list');
             const mode = document.getElementById('input-mode').value;
             list.innerHTML = '';
-            
-            document.getElementById('group-fields').style.display = mode === 'group' ? 'block' : 'none';
 
             tempFiles.forEach((f, idx) => {
                 let card = document.createElement('div');
                 card.className = 'preview-card';
                 card.innerHTML = `
-                    <div class="preview-thumb">
-                        ${f.isPdf ? '<div class="pdf-tag">PDF</div>' : ''}
-                        <img src="${f.thumb}">
-                    </div>
-                    <div class="preview-info">
-                        <div style="font-size:0.6rem; color:#666; margin-bottom:5px;">FILE: ${f.name}</div>
-                        ${mode === 'individual' ? `
-                            <input type="text" class="cyber-input" placeholder="Invoice" oninput="tempFiles[${idx}].inv=this.value" style="margin-bottom:5px;">
-                            <textarea class="cyber-input" placeholder="Catatan" oninput="tempFiles[${idx}].cap=this.value"></textarea>
-                        ` : '<div style="color:var(--secondary); font-size:0.7rem;">Mengikuti data Group</div>'}
+                    <div class="preview-top">
+                        <div class="preview-thumb" onclick="triggerFileSelect(${idx})">
+                            ${f.data ? `<img src="${f.thumb}">${f.isPdf ? '<div class="pdf-tag">PDF</div>':''}` : '<span style="font-size:1.5rem;">+</span>'}
+                        </div>
+                        <div class="preview-inputs">
+                            ${mode === 'individual' ? `
+                                <input type="text" class="cyber-input" placeholder="Invoice" value="${f.inv}" oninput="tempFiles[${idx}].inv=this.value">
+                                <textarea class="cyber-input" placeholder="Catatan / Ket" oninput="tempFiles[${idx}].cap=this.value">${f.cap}</textarea>
+                            ` : `<div style="color:var(--secondary); font-size:0.7rem; padding:10px;">MODE GROUP: Mengikuti Invoice di atas.</div>`}
+                            <button class="cyber-btn danger mini" onclick="removeRow(${idx})">HAPUS BARIS</button>
+                        </div>
                     </div>
                 `;
                 list.appendChild(card);
             });
         }
 
+        function removeRow(idx) {
+            tempFiles.splice(idx, 1);
+            renderPreviews();
+        }
+
+        // SEND LOGIC
         function mainAction() {
-            if(tempFiles.length === 0) return alert("PILIH FILE!");
+            if(tempFiles.length === 0 || !tempFiles[0].data) return alert("Masukan file dulu!");
             const mode = document.getElementById('input-mode').value;
             
-            if(role === 'operator') {
-                // Operator print lokal
-                activeJob = { 
-                    files: tempFiles.map(f => ({...f, inv: mode==='group'?document.getElementById('inv-group').value : f.inv})),
-                    isBatch: tempFiles.length > 1
-                };
-                openPrintLogic(activeJob);
-                return;
-            }
-
-            // Admin/Designer Kirim
             let finalFiles = tempFiles.map(f => {
                 return {
                     ...f,
-                    inv: mode === 'group' ? document.getElementById('inv-group').value : f.inv,
-                    cap: mode === 'group' ? document.getElementById('cap-group').value : f.cap
+                    inv: mode === 'group' ? document.getElementById('group-inv').value : f.inv,
+                    cap: mode === 'group' ? document.getElementById('group-cap').value : f.cap
                 };
             });
 
-            if(activeConns.length === 0) return alert("NO TARGET!");
+            if(activeConns.length === 0) return alert("Tidak ada koneksi!");
+            
             let d = { 
                 type: 'job', files: finalFiles, id: Date.now(), 
                 senderRole: role, senderId: myId, mode: mode 
@@ -396,25 +384,40 @@
             
             activeConns.forEach(c => c.send(d));
             saveStream({ ...d, direction: 'out', hidden: false });
-            saveHistory({ ...d, inv: mode==='group'?document.getElementById('inv-group').value : 'MULTI', typeLabel: role==='admin'?'ADM_SEND':'DSN_SEND' });
             
-            tempFiles = []; renderPreviews(); 
-            document.getElementById('inv-group').value = ''; document.getElementById('cap-group').value = '';
+            // History Terkirim
+            let histLabel = role === 'admin' ? 'ADM_SEND' : 'DSN_SEND';
+            saveHistory({ ...d, inv: mode==='group' ? document.getElementById('group-inv').value : 'MULTI-INV', typeLabel: histLabel });
+
+            tempFiles = [];
+            renderPreviews();
+            document.getElementById('group-inv').value = '';
+            document.getElementById('group-cap').value = '';
             renderStream();
+            alert("DATA TERKIRIM!");
         }
 
         function handleIncoming(d, from) {
-            let label = (role === 'designer' && d.senderRole === 'admin') ? "DSN_RECV" : (role === 'operator' && d.senderRole === 'designer') ? "OP_RECV" : "";
+            let label = "";
+            if(role === 'designer' && d.senderRole === 'admin') label = "DSN_RECV";
+            if(role === 'operator' && d.senderRole === 'designer') label = "OP_RECV";
             if(!label) return;
+            
             saveStream({ ...d, direction: 'in', from: from, hidden: false });
             saveHistory({ ...d, fromId: from, typeLabel: label });
             renderStream();
         }
 
+        // DB UTILS
         function saveStream(obj) { db.transaction("stream", "readwrite").objectStore("stream").put(obj); }
         function saveHistory(obj) {
             db.transaction("history", "readwrite").objectStore("history").add({
-                time: new Date().toLocaleString(), inv: obj.inv || 'MULTI', typeLabel: obj.typeLabel, partner: obj.fromId || obj.senderId || 'LOCAL', role: role
+                time: new Date().toLocaleString(), 
+                inv: obj.inv || 'MULTI', 
+                typeLabel: obj.typeLabel, 
+                partner: obj.fromId || obj.senderId || 'ME', 
+                role: role,
+                cap: obj.cap || '-'
             });
         }
 
@@ -429,41 +432,56 @@
                     let card = document.createElement('div');
                     card.className = `msg-card ${i.direction} ${selectedInboxes.includes(i.id) ? 'selected' : ''}`;
                     
-                    let bodyContent = "";
+                    let bodyHtml = "";
                     i.files.forEach((f, idx) => {
-                        bodyContent += `
-                            <div class="${idx > 0 ? 'sub-item' : ''}">
-                                <div class="msg-img-container">
-                                    ${f.isPdf ? '<div class="pdf-tag">PDF</div>' : ''}
-                                    <img src="${f.thumb || f.data}" class="msg-img">
-                                </div>
-                                <div class="msg-inv"># ${f.inv || '(No Invoice)'}</div>
-                                <div class="msg-cap">${f.cap || '---'}</div>
+                        bodyHtml += `<div class="${idx > 0 ? 'sub-item' : ''}">
+                            <div class="msg-img-container">
+                                ${f.isPdf ? '<div class="pdf-tag">PDF</div>' : ''}
+                                <img src="${f.thumb}" class="msg-img">
                             </div>
-                        `;
+                            <div class="msg-inv"># ${f.inv || '(No Inv)'}</div>
+                            <div class="msg-cap">${f.cap || '-'}</div>
+                        </div>`;
                     });
 
                     let actionBtn = "";
-                    if(i.direction === 'in') {
-                        if(role === 'operator') actionBtn = `
-                            <div style="display:flex; gap:5px;">
-                                <button class="cyber-btn success mini" style="flex:1;" onclick="openPrintSingle('${i.id}')">PRINT</button>
-                                <button class="cyber-btn mini" style="background:#333; color:#fff;" onclick="toggleSelect('${i.id}')">${selectedInboxes.includes(i.id) ? 'UNSELECT' : 'SELECT BATCH'}</button>
-                            </div>`;
-                        if(role === 'designer') actionBtn = `<button class="cyber-btn mini" style="width:100%;" onclick="downloadFiles('${i.id}')">SAVE ALL ASSETS</button>`;
+                    if(i.direction === 'in' && role === 'operator') {
+                        actionBtn = `<div style="display:flex; gap:5px;">
+                            <button class="cyber-btn success mini" style="flex:1;" onclick="openPrintSingle('${i.id}')">PRINT</button>
+                            <button class="cyber-btn mini" style="background:#333;" onclick="toggleSelect('${i.id}')">${selectedInboxes.includes(i.id) ? 'DESELECT' : 'SELECT BATCH'}</button>
+                        </div>`;
                     }
 
-                    card.innerHTML = `
-                        <div class="msg-header">
-                            <span>FROM: ${i.from || 'ME'}</span>
-                            <span onclick="hideStream('${i.id}')" style="color:var(--danger); cursor:pointer;">[ HAPUS ]</span>
-                        </div>
-                        <div class="msg-body">${bodyContent}</div>
-                        <div class="msg-footer">${actionBtn}</div>
-                    `;
+                    card.innerHTML = `<div class="msg-header"><span>FROM: ${i.from || 'ME'}</span><span onclick="hideStream('${i.id}')" style="color:var(--danger); cursor:pointer;">[HAPUS]</span></div>
+                                      <div class="msg-body">${bodyHtml}</div><div class="msg-footer">${actionBtn}</div>`;
                     area.appendChild(card);
                 });
                 area.scrollTop = area.scrollHeight;
+            };
+        }
+
+        // PRINT LOGIC
+        async function getPdfPreview(base64, highRes = false) {
+            try {
+                const pdfData = atob(base64.split(',')[1]);
+                const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
+                const page = await pdf.getPage(1);
+                const viewport = page.getViewport({scale: highRes ? 3.5 : 0.5});
+                const canvas = document.createElement('canvas');
+                canvas.height = viewport.height; canvas.width = viewport.width;
+                await page.render({canvasContext: canvas.getContext('2d'), viewport: viewport}).promise;
+                return canvas.toDataURL('image/jpeg', highRes ? 0.95 : 0.6);
+            } catch (e) { return null; }
+        }
+
+        function openPrintSingle(id) {
+            db.transaction("stream").objectStore("stream").get(parseInt(id) || id).onsuccess = e => {
+                activeJob = { ...e.target.result, isBatch: false };
+                document.getElementById('modal-print').style.display = 'flex';
+                document.getElementById('batch-info').style.display = 'none';
+                document.getElementById('single-preview').style.display = 'flex';
+                document.getElementById('p-img').src = activeJob.files[0].thumb;
+                document.getElementById('p-inv').value = activeJob.files[0].inv;
             };
         }
 
@@ -475,133 +493,152 @@
             renderStream();
         }
 
-        function openPrintSingle(id) {
-            db.transaction("stream").objectStore("stream").get(parseInt(id) || id).onsuccess = e => {
-                activeJob = { ...e.target.result, isBatch: false };
-                openPrintLogic(activeJob);
-            };
-        }
-
         function openBatchPrint() {
-            if(selectedInboxes.length === 0) return alert("Pilih minimal 1 inbox!");
-            let jobs = [];
+            if(selectedInboxes.length === 0) return alert("Pilih item dulu!");
+            let allPdfFiles = [];
             let count = 0;
             selectedInboxes.forEach(id => {
                 db.transaction("stream").objectStore("stream").get(id).onsuccess = e => {
-                    jobs.push(e.target.result);
+                    e.target.result.files.forEach(f => { if(f.isPdf) allPdfFiles.push(f); });
                     count++;
                     if(count === selectedInboxes.length) {
-                        // Kumpulkan semua file PDF dari semua job yang dipilih
-                        let allFiles = [];
-                        jobs.forEach(j => {
-                            j.files.forEach(f => { if(f.isPdf) allFiles.push(f); });
-                        });
-                        if(allFiles.length === 0) return alert("Batch hanya untuk file PDF!");
-                        activeJob = { files: allFiles, isBatch: true };
-                        openPrintLogic(activeJob);
+                        if(allPdfFiles.length === 0) return alert("Batch hanya untuk PDF!");
+                        activeJob = { files: allPdfFiles, isBatch: true };
+                        document.getElementById('modal-print').style.display = 'flex';
+                        document.getElementById('batch-info').style.display = 'block';
+                        document.getElementById('batch-count-val').innerText = allPdfFiles.length;
+                        document.getElementById('single-preview').style.display = 'none';
                     }
-                };
+                }
             });
-        }
-
-        function openPrintLogic(job) {
-            document.getElementById('modal-print').style.display = 'flex';
-            if(job.isBatch) {
-                document.getElementById('single-print-preview').style.display = 'none';
-                document.getElementById('batch-print-info').style.display = 'block';
-                document.getElementById('batch-file-count').innerText = job.files.length;
-            } else {
-                document.getElementById('single-print-preview').style.display = 'flex';
-                document.getElementById('batch-print-info').style.display = 'none';
-                let f = job.files[0];
-                document.getElementById('p-img').src = f.thumb || f.data;
-                document.getElementById('p-pdf-badge').style.display = f.isPdf ? 'block' : 'none';
-                document.getElementById('p-inv').value = f.inv || '';
-            }
         }
 
         async function executePrint() {
             const btn = document.getElementById('btn-do-print');
-            const oldTxt = btn.innerText;
             btn.innerText = "RENDERING..."; btn.disabled = true;
-
             try {
-                let pw = document.getElementById('p-pdf-paper').value === 'custom' ? document.getElementById('p-pdf-pw').value : document.getElementById('p-pdf-paper').value.split(',')[0];
-                let ph = document.getElementById('p-pdf-paper').value === 'custom' ? document.getElementById('p-pdf-ph').value : document.getElementById('p-pdf-paper').value.split(',')[1];
+                let pw = document.getElementById('p-pdf-paper').value.split(',')[0];
+                let ph = document.getElementById('p-pdf-paper').value.split(',')[1];
                 let target = parseInt(document.getElementById('p-pdf-target').value) || 1;
                 let mat = document.getElementById('p-mat').value;
 
-                let html = `
-                <style>
-                    @page { size: ${pw}cm ${ph}cm; margin: 0; }
-                    body { margin: 0; padding: 0; background: #fff; }
-                    .sheet { position: relative; width: ${pw}cm; height: ${ph}cm; page-break-after: always; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-                    .pdf-img { width: 100%; height: calc(100% - 1.2cm); object-fit: contain; }
-                    .footer { height: 1.2cm; width: 100%; display: flex; align-items: center; justify-content: center; font-family: Arial; font-weight: bold; font-size: 11pt; border-top: 1px solid #eee; }
-                </style>`;
-
+                let html = `<style>@page { size: ${pw}cm ${ph}cm; margin: 0; } body { margin: 0; } 
+                            .sheet { position: relative; width: ${pw}cm; height: ${ph}cm; page-break-after: always; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+                            .pdf-img { width: 100%; height: calc(100% - 1.2cm); object-fit: contain; }
+                            .footer { height: 1.2cm; width: 100%; display: flex; align-items: center; justify-content: center; font-family: Arial; font-weight: bold; font-size: 11pt; border-top: 1px solid #eee; }</style>`;
+                
                 let content = "";
-                // Loop semua file dalam job (baik single maupun batch)
                 for(let f of activeJob.files) {
-                    if(!f.isPdf) continue; // Skip jika ada jpg nyelip di batch
-                    const highRes = await getPdfPreview(f.data, true);
+                    if(!f.isPdf) continue;
+                    const img = await getPdfPreview(f.data, true);
                     for(let i=0; i<target; i++) {
-                        content += `<div class="sheet"><img src="${highRes}" class="pdf-img"><div class="footer">${f.inv || ''} - ${mat}</div></div>`;
+                        content += `<div class="sheet"><img src="${img}" class="pdf-img"><div class="footer">${f.inv || ''} - ${mat}</div></div>`;
                     }
                 }
 
                 let f = document.getElementById('p-frame');
                 f.style.display = "block";
-                let fDoc = f.contentWindow.document;
-                fDoc.open(); fDoc.write(html + content); fDoc.close();
-
+                f.contentWindow.document.open(); f.contentWindow.document.write(html + content); f.contentWindow.document.close();
                 setTimeout(() => {
-                    f.contentWindow.print();
-                    f.style.display = "none";
-                    btn.innerText = oldTxt; btn.disabled = false;
-                    selectedInboxes = []; document.getElementById('batch-count').innerText = "0 ITEM DIPILIH";
-                    closeModal(); renderStream();
+                    f.contentWindow.print(); f.style.display = "none";
+                    btn.innerText = "CETAK SEKARANG"; btn.disabled = false;
+                    saveHistory({ inv: activeJob.isBatch ? 'BATCH' : activeJob.files[0].inv, cap: 'HASIL CETAK', typeLabel: 'OP_PROD' });
+                    closeModal();
                 }, 1000);
-
-            } catch (e) { alert("Error Print!"); btn.innerText = oldTxt; btn.disabled = false; }
+            } catch(e) { alert("Print Error!"); btn.innerText = "CETAK SEKARANG"; btn.disabled = false; }
         }
 
         function closeModal() { document.getElementById('modal-print').style.display = 'none'; }
         function hideStream(id) {
             db.transaction("stream", "readwrite").objectStore("stream").get(parseInt(id) || id).onsuccess = e => {
-                let d = e.target.result; d.hidden = true; 
-                db.transaction("stream", "readwrite").objectStore("stream").put(d); renderStream();
+                let d = e.target.result; d.hidden = true; db.transaction("stream", "readwrite").objectStore("stream").put(d); renderStream();
             };
         }
 
-        // Standard Utils
-        function togglePdfPaperCustom() { document.getElementById('pdf-custom-paper-box').style.display = document.getElementById('p-pdf-paper').value==='custom'?'flex':'none'; }
-        function toBase64(f) { return new Promise(r => { let fr=new FileReader(); fr.onload=()=>r(fr.result); fr.readAsDataURL(f); }); }
-        function changeId() { let nid = prompt("ID BARU:", myId); if(nid) { localStorage.setItem('kts_id', nid); location.reload(); } }
+        // HISTORY SPLIT LOGIC
         function toggleHistory() {
             let m = document.getElementById('modal-hist');
             m.style.display = m.style.display==='flex'?'none':'flex';
             if(m.style.display==='flex') {
                 document.getElementById('hist-role-title').innerText = role.toUpperCase();
-                document.getElementById('op-tabs').style.display = role === 'operator' ? 'flex' : 'none';
+                setupHistoryTabs();
                 refreshHistBody();
             }
         }
+
+        function setupHistoryTabs() {
+            const t1 = document.getElementById('tab-1');
+            const t2 = document.getElementById('tab-2');
+            if(role === 'admin') { t1.innerText = "LOG TERKIRIM"; t2.style.display = 'none'; }
+            if(role === 'designer') { t1.innerText = "INBOX ADMIN"; t2.innerText = "OUTBOX DESIGNER"; t2.style.display = 'block'; }
+            if(role === 'operator') { t1.innerText = "INBOX DESIGNER"; t2.innerText = "LOG PRODUKSI"; t2.style.display = 'block'; }
+        }
+
+        function switchHistTab(n) {
+            currentTab = n;
+            document.getElementById('tab-1').classList.toggle('active', n===1);
+            document.getElementById('tab-2').classList.toggle('active', n===2);
+            refreshHistBody();
+        }
+
         function refreshHistBody() {
             const b = document.getElementById('hist-body'); b.innerHTML = '';
             db.transaction("history").objectStore("history").getAll().onsuccess = e => {
                 e.target.result.reverse().forEach(h => {
-                    if(h.role === role) b.innerHTML += `<tr><td>${h.time}</td><td>${h.inv}</td><td>${h.cap || '-'}</td><td>${h.partner}</td><td><button class="cyber-btn danger mini" onclick="deleteHistory(${h.id})">DEL</button></td></tr>`;
+                    let show = false;
+                    if(role === 'admin' && h.typeLabel === 'ADM_SEND') show = true;
+                    if(role === 'designer') {
+                        if(currentTab === 1 && h.typeLabel === 'DSN_RECV') show = true;
+                        if(currentTab === 2 && h.typeLabel === 'DSN_SEND') show = true;
+                    }
+                    if(role === 'operator') {
+                        if(currentTab === 1 && h.typeLabel === 'OP_RECV') show = true;
+                        if(currentTab === 2 && h.typeLabel === 'OP_PROD') show = true;
+                    }
+
+                    if(show) {
+                        b.innerHTML += `<tr><td>${h.time}</td><td>${h.inv}</td><td>${h.cap}</td><td>${h.partner}</td><td><button class="cyber-btn danger mini" onclick="deleteHistory(${h.id})">DEL</button></td></tr>`;
+                    }
                 });
             };
         }
+
         function deleteHistory(id) { db.transaction("history", "readwrite").objectStore("history").delete(id).onsuccess = () => refreshHistBody(); }
-        function clearAllHistory() { if(confirm("Clear All?")) { 
-            let tx = db.transaction("history", "readwrite");
-            tx.objectStore("history").openCursor().onsuccess = e => {
-                let c = e.target.result; if(c) { if(c.value.role === role) c.delete(); c.continue(); } else refreshHistBody();
+        
+        function clearAllHistory() {
+            if(confirm("Clear tab ini?")) {
+                let tx = db.transaction("history", "readwrite");
+                let store = tx.objectStore("history");
+                store.openCursor().onsuccess = e => {
+                    let c = e.target.result;
+                    if(c) {
+                        let canDel = false;
+                        if(role==='admin' && c.value.typeLabel==='ADM_SEND') canDel=true;
+                        if(role==='designer') {
+                            if(currentTab===1 && c.value.typeLabel==='DSN_RECV') canDel=true;
+                            if(currentTab===2 && c.value.typeLabel==='DSN_SEND') canDel=true;
+                        }
+                        if(role==='operator') {
+                            if(currentTab===1 && c.value.typeLabel==='OP_RECV') canDel=true;
+                            if(currentTab===2 && c.value.typeLabel==='OP_PROD') canDel=true;
+                        }
+                        if(canDel) c.delete();
+                        c.continue();
+                    } else refreshHistBody();
+                };
+            }
+        }
+
+        // UTILS
+        function toBase64(f) { return new Promise(r => { let fr=new FileReader(); fr.onload=()=>r(fr.result); fr.readAsDataURL(f); }); }
+        function changeId() { let nid = prompt("ID BARU:", myId); if(nid) { localStorage.setItem('kts_id', nid); location.reload(); } }
+        function exportHistory() {
+            let csv = "WAKTU,INV,KET,PARTNER\n";
+            db.transaction("history").objectStore("history").getAll().onsuccess = e => {
+                e.target.result.forEach(h => { csv += `"${h.time}","${h.inv}","${h.cap}","${h.partner}"\n`; });
+                const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); a.download="log.csv"; a.click();
             };
-        }}
+        }
     </script>
 </body>
 </html>
